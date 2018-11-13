@@ -92,20 +92,18 @@ export class ListuserComponent implements OnInit {
         this.users = data;
 
         this.users.forEach( e => {
+
           this.companies.forEach( e2 =>{
               if(e2._id == e.id_company) {
                 // this.users.push('name_company':e.name_company);      
               }
           });
+          
+          // console.log(element.name_company);
+          this.itemUsers.push(e.name_user);
 
-          data.forEach(e => {
-            // console.log(element.name_company);
-            this.items.push(e.name_user);
-  
-            // this.items = e.name_company;
-            this.ngSelect3.items = this.itemUsers;
-          });
-
+          // this.items = e.name_company;
+          this.ngSelect3.items = this.itemUsers;
         });
       }
     );
