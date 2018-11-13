@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="saveUser()">
+        <div class="col-md-6 md gw-left">  
+          <input class="form-control" type="number" [(ngModel)]="user._id" name="id" id="id" placeholder="ID">
+          <!-- <input class="form-control" type="number" [(ngModel)]="user.id_company" name="address" id="address" placeholder="Company"> -->
+          
+          <ng-select #company 
+              [items]="items"
+              (data)="refreshValue($event)"
+              (selected)="selected($event)"
+              (removed)="removed($event)"
+              (typed)="typed($event)"
+              placeholder="No Company Selected">
+          </ng-select>
+
+          <input class="form-control" type="text" [(ngModel)]="user.name_user"  name="name_user" id="name_user" placeholder="User Name">
+          <input class="form-control" type="email" [(ngModel)]="user.email" name="email" id="email" placeholder="Email">
+          <input class="form-control" type="password" [(ngModel)]="user.password" name="password" id="password" placeholder="Password">
+  
+        </div>
+        <div class="col-md-6 md gw-right">  
+          <div class="row action">
+            <a style="text-decoration: none" class="btn-search" [routerLink]="" >SEARCH</a>
+            <!-- <button class="btn-add" >ADD</button> -->
+            <!-- <button class="btn-delete">DELETE</button> -->
+            <button class="btn-user">USER</button>
+            <!-- <chechbox>admin</chechbox>
+            <chechbox>member</chechbox>
+            <chechbox>view</chechbox> -->
+            
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <!-- <p>ROLES</p> -->
+              </div>
+              <div  class="col-md-12 role" style="padding: 0">
+                 
+                  <!-- <div *ngFor="let role of roles; index as i" >
+                      <label><input id="role_{{role._id}}"  type="checkbox" value="{{role._id}}">{{role.role_name}}</label>
+                  </div> -->
+                  <!-- <select [(ngModel)]="user.id_role" name="role" id="role" class="form-control">
+                    
+                    <option *ngFor="let role of roles" value="{{role._id}}">{{role.role_name}}</option>
+                  </select> -->
+
+                  <ng-select #role 
+                      [items]="items2"
+                      (data)="refreshValue($event)"
+                      (selected)="selected2($event)"
+                      (removed)="removed($event)"
+                      (typed)="typed($event)"
+                      placeholder="No Role Selected">
+                  </ng-select>
+
+                
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn-submit btn-search" style="width: 190px;" type="submit" value=" ">ADD A User</button>
+        </div>
+      </form>
+  
+      
+    </div>
+  </div> 

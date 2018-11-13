@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; 
+  // "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+*/
+
+.md {
+    display: inline-block;
+}
+.btn-add,.btn-search,.btn-delete,.btn-user {
+    border-radius: 20px;
+    padding: 3px 30px;
+    width: 123px;
+    margin-right: 5px;
+    background-color: transparent;
+  }
+  .btn-search {
+    border:1px solid #67b4c8 ;
+    color: #67b4c8;
+    
+
+  }
+  .btn-add {
+    border:1px solid #7ac29a ;
+    color: #7ac29a;
+    
+  }
+  .btn-delete {
+    border:1px solid #f3ba46 ;
+    color: #f3ba46;
+  }
+.btn-submit{
+  background: #67b4c8;
+  color:#fff;
+  font-weight: bold;
+  width: 155px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.open  .dropdown-menu {
+  display: block ;
+}
+    
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active {
+  color:#000;
+  background-color: #fff;
+  border-color: #ddd;
+  margin-bottom: 5px;
+}
+
+.pull-right {
+  color:#000;
+}

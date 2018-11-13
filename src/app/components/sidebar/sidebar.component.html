@@ -1,0 +1,42 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div class="list-group">
+        <!-- <p class="list-group-item">
+            NAVIGATION
+        </p> -->
+        <a [routerLink]="['/home']" [routerLinkActive]="['router-link-active']" class="list-group-item" id="home-category">
+            <i class="fa fa-fw fa-home"></i>&nbsp;GW
+        </a>
+        <a  [routerLink]="['/capteur']" [routerLinkActive]="['router-link-active']" class="list-group-item" id="capteur-category">
+            <i class="fa fa-fw fa-cube"></i>&nbsp;NODE
+        </a>
+        <a  [routerLink]="['/storage']" [routerLinkActive]="['router-link-active']" class="list-group-item" id="storage-category">
+            <i class="fa fa-fw fa-database"></i>&nbsp;GROUP
+        </a>
+        
+        <a style="margin-top: 50px;"  [routerLink]="['/admin/list']" [routerLinkActive]="['router-link-active']" class="list-group-item" id="client-category">
+            <i class="fa fa-fw fa-users"></i>&nbsp;ADMIN
+            
+        </a>
+        
+
+        
+        <!-- <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-cogs"></i>&nbsp; Manage</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/capteur']"><span>Capteur</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><span>Device</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><span>User</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div> -->
+    </div>
+</nav>

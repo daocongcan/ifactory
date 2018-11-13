@@ -1,0 +1,46 @@
+.custom-col {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+    font-size: 12px;
+}
+
+.footer-social {
+    background-color: #DBDBDB;
+    padding: 5px;
+
+    a {
+        text-decoration: none;
+        color: #acb1b7;
+        font-size: 14px;
+    }
+
+    i {
+        background-color: white;
+        padding: 5px;
+        border: solid 1px white;
+        border-radius: 100%;
+        color: #4B5258;
+    }
+}
+
+.footer-legal {
+    background-color: #4C5259;
+    font-size: 12px;
+    color: white;
+}
+
+#sateco_footer_logo {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+.footer {
+    background-color: #cdcdcd;
+    padding: 15px 0;
+    margin: 0; 
+    font-size: 13px;
+    padding: 5px;
+}
