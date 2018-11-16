@@ -9,13 +9,13 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
-import { Role } from '../models/role';
-import { CreateRole } from '../models/create-role';
-import { UpdateRole } from '../models/update-role';
+import { Group } from '../models/group';
+// import { CreateGroup } from '../models/create-Group';
+// import { UpdateGroup } from '../models/update-Group';
 
 
 @Injectable()
-export class RolesService extends BaseService {
+export class GroupsService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -24,15 +24,15 @@ export class RolesService extends BaseService {
   }
 
   /**
-   * get list of roles
+   * get list of Groups
    */
-  listRolesResponse(): Observable<HttpResponse<Role[]>> {
+  listGroupsResponse(): Observable<HttpResponse<Group[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `role/getall`,
+      this.rootUrl + `group/getall`,
       __body,
       {
         headers: __headers,
@@ -44,33 +44,33 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role[] = null;
-        _body = _resp.body as Role[]
-        return _resp.clone({body: _body}) as HttpResponse<Role[]>;
+        let _body: Group[] = null;
+        _body = _resp.body as Group[]
+        return _resp.clone({body: _body}) as HttpResponse<Group[]>;
       })
     );
   }
 
   /**
-   * get list of roles
+   * get list of Groups
    */
-  listRoles(): Observable<Role[]> {
-    return this.listRolesResponse().pipe(
+  listGroups(): Observable<Group[]> {
+    return this.listGroupsResponse().pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * Create Role
-   * @param body - Created role object
+   * Create Group
+   * @param body - Created Group object
    */
-  createRoleResponse(body: CreateRole): Observable<HttpResponse<Role>> {
+  createGroupResponse(body: Group): Observable<HttpResponse<Group>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       "POST",
-      this.rootUrl + `role/create`,
+      this.rootUrl + `group/create`,
       __body,
       {
         headers: __headers,
@@ -82,33 +82,33 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role = null;
-        _body = _resp.body as Role
-        return _resp.clone({body: _body}) as HttpResponse<Role>;
+        let _body: Group = null;
+        _body = _resp.body as Group
+        return _resp.clone({body: _body}) as HttpResponse<Group>;
       })
     );
   }
 
   /**
-   * Create Role
-   * @param body - Created role object
+   * Create Group
+   * @param body - Created Group object
    */
-  createRole(body: CreateRole): Observable<Role> {
-    return this.createRoleResponse(body).pipe(
+  createGroup(body: Group): Observable<Group> {
+    return this.createGroupResponse(body).pipe(
       map(_r => _r.body)
     );
   }
   /**
    * @param body - undefined
    */
-  updateRoleResponse(body?: UpdateRole): Observable<HttpResponse<Role>> {
+  updateGroupResponse(body?: Group): Observable<HttpResponse<Group>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       "PUT",
-      this.rootUrl + `role/update/${body._id}`,
+      this.rootUrl + `group/update/${body._id}`,
       __body,
       {
         headers: __headers,
@@ -120,9 +120,9 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role = null;
-        _body = _resp.body as Role
-        return _resp.clone({body: _body}) as HttpResponse<Role>;
+        let _body: Group = null;
+        _body = _resp.body as Group
+        return _resp.clone({body: _body}) as HttpResponse<Group>;
       })
     );
   }
@@ -130,23 +130,23 @@ export class RolesService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateRole(body?: UpdateRole): Observable<Role> {
-    return this.updateRoleResponse(body).pipe(
+  updateGroup(body?: Group): Observable<Group> {
+    return this.updateGroupResponse(body).pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * Returns a single role
-   * @param roleId - ID of role to return
+   * Returns a single Group
+   * @param GroupId - ID of Group to return
    */
-  getRoleByIdResponse(roleId: number): Observable<HttpResponse<Role>> {
+  getGroupByIdResponse(GroupId: number): Observable<HttpResponse<Group>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/roles/${roleId}`,
+      this.rootUrl + `/groups/${GroupId}`,
       __body,
       {
         headers: __headers,
@@ -158,34 +158,34 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role = null;
-        _body = _resp.body as Role
-        return _resp.clone({body: _body}) as HttpResponse<Role>;
+        let _body: Group = null;
+        _body = _resp.body as Group
+        return _resp.clone({body: _body}) as HttpResponse<Group>;
       })
     );
   }
 
   /**
-   * Returns a single role
-   * @param roleId - ID of role to return
+   * Returns a single Group
+   * @param GroupId - ID of Group to return
    */
-  getRoleById(roleId: number): Observable<Role> {
-    return this.getRoleByIdResponse(roleId).pipe(
+  getGroupById(GroupId: number): Observable<Group> {
+    return this.getGroupByIdResponse(GroupId).pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * Deletes a role
-   * @param roleId - role id to delete
+   * Deletes a Group
+   * @param GroupId - Group id to delete
    */
-  deleteRoleResponse(roleId: number): Observable<HttpResponse<void>> {
+  deleteGroupResponse(GroupId: number): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     
     let req = new HttpRequest<any>(
       "DELETE",
-      this.rootUrl + `role/delete/${roleId}`,
+      this.rootUrl + `group/delete/${GroupId}`,
       __body,
       {
         headers: __headers,
@@ -205,14 +205,14 @@ export class RolesService extends BaseService {
   }
 
   /**
-   * Deletes a role
-   * @param roleId - role id to delete
+   * Deletes a Group
+   * @param GroupId - Group id to delete
    */
-  deleteRole(roleId: number): Observable<void> {
-    return this.deleteRoleResponse(roleId).pipe(
+  deleteGroup(GroupId: number): Observable<void> {
+    return this.deleteGroupResponse(GroupId).pipe(
       map(_r => _r.body)
     );
   }}
 
-export module RolesService {
+export module GroupsService {
 }

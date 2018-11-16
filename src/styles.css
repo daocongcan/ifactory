@@ -16,17 +16,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
     width: 123px;
     margin-right: 5px;
     background-color: transparent;
-  }
+}
+
+.btn-add:hover,.btn-search:hover,.btn-delete:hover,.btn-user:hover {
+  cursor: pointer;
+
+}
   .btn-search {
     border:1px solid #67b4c8 ;
     color: #67b4c8;
-    
-
   }
-  .btn-add {
+  .btn-add {    
+    padding: 6px 45px; 
+    text-decoration: none;
+  }
+  .btn-add,.btn-add:hover {
     border:1px solid #7ac29a ;
     color: #7ac29a;
-    
+    text-decoration: none;
   }
   .btn-delete {
     border:1px solid #f3ba46 ;
@@ -54,4 +61,36 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
 .pull-right {
   color:#000;
+}
+
+.glyphicon-remove {
+  position: relative  !important;
+}
+.glyphicon-remove:before {
+  content: "\f00d"  !important;
+  font-family: FontAwesome  !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-decoration: inherit !important;
+  color: #000 !important;
+  font-size: 15px !important;
+  padding-right: 0.5em !important;
+  position: absolute !important;
+  top: 0px !important;
+  left: -5px !important;
+}
+
+
+.gw-left > input,.gw-left > select{
+  margin-bottom: 5px;
+}
+.gw-right {
+  vertical-align: top;
+}
+.gw-right .action{
+  margin-bottom: 12px;
+}
+.btn-add {    
+  padding: 6px 45px; 
+  text-decoration: none;
 }

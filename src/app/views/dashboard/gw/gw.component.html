@@ -1,24 +1,24 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="col-md-6 md gw-left">  
-      <input class="form-control" type="text" name="" placeholder="GW">
-      <input class="form-control" type="text" name="" placeholder="ID">
-      <input class="form-control" type="text" name="" placeholder="IP address">
-      <input class="form-control" type="text" name="" placeholder="OS">
-      
-    </div>
-    <div class="col-md-6 md gw-right">  
-      <div class="row action">
-        <button class="btn-search">SEARCH</button>
-        <button class="btn-add">ADD</button>
-        <button class="btn-delete">DELETE</button>
+    <form #groupForm (ngSubmit)="save();">
+      <div class="col-md-6 md gw-left">  
+        <input class="form-control" [(ngModel)]="gw._id" type="number" name="_id" placeholder="ID">
+        <input class="form-control" [(ngModel)]="gw.name_gw" type="text" name="name_gw" placeholder="Name GW">
+        <input class="form-control" [(ngModel)]="gw.IP_public" type="text" name="IP_public" placeholder="IP PUBLIC">
+        <input class="form-control" [(ngModel)]="gw.OS" type="text" name="os" placeholder="OS">
+        
+      </div>
+      <div class="col-md-6 md gw-right">  
+        <div class="row action">
+          <button  [routerLink]="['/gw']" class="btn-search">SEARCH</button>
+        </div>
+        <div class="row">
+            <input class="form-control" [(ngModel)]="gw.MAC_add" type="text" name="mac_add" placeholder="MAC ADD">
+        </div>
       </div>
       <div class="row">
-        <input class="form-control" type="text" name="" placeholder="MAC ADD">
+        <button class="btn-submit btn-search" type="submit" value=" ">ADD A GW</button>
       </div>
-    </div>
-    <div class="row">
-      <button class="btn-submit btn-search" type="submit" value=" ">ADD A GW</button>
-    </div>
+    </form>  
   </div>
 </div>

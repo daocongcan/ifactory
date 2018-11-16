@@ -21,6 +21,8 @@ import { Role } from '../../../api/models/role';
 import { Locale } from '../../../locale';
 import { SelectComponent } from 'ng2-select';
 
+import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -36,6 +38,8 @@ export class UserComponent implements OnInit {
   users: User[] = [];
   roles: Role[] = [];
   companies: Company[] = [];
+  encrypted = "";
+  key="dfmsecret";
 
   public items:any = [] ;
   public items2:any = [] ;
@@ -205,13 +209,15 @@ export class UserComponent implements OnInit {
     }
     else {
       
+
       // console.log(this.user);
+      this.encrypted = CryptoJS.AES.encrypt(this.user.password, this.key).toString();
+      this.user.password = this.encrypted;
       
       this.apiUserService.createUser(this.user)
         .subscribe(
           response => {
             this.commonService.notifySuccess(this.locale.CONGRATULATION, "Add user success", 1500);
-            $('#closeModal').click();
             this.renderView();
           },
           err => {

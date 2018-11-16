@@ -2,18 +2,18 @@
   <div class="col-md-12">
     <div class="row" style="margin-bottom: 10px;">
       <div class="col-md-6 md">
-        <input type="text" (keyup.enter)="searchUser()" [(ngModel)]="keySearch" placeholder="Enter name company" id="search" class="form-control">
-        <ng-select title="Role" #search 
+        <input type="text" (keyup.enter)="seachName()" [(ngModel)]="keySearch" placeholder="Enter name" id="search" class="form-control">
+        <!-- <ng-select title="Role" #search 
           [items]="itemUsers"
           (data)="refreshValue($event)"
-          (selected)="selected2($event)"
+          (selected)="selectedSearch($event)"
           (removed)="removed($event)"
           (typed)="typed($event)"
           placeholder="No Name User Selected">
-        </ng-select>
+        </ng-select> -->
       </div>
       <div class="col-md-6 md">
-        <button class="btn-search"  >SEARCH</button>
+        <button class="btn-search" (click)="seachName()" >SEARCH</button>
         
         <a  [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="btn-add" >ADD</a>
         <button [ngClass]="'delete'"  class="btn-search btn-delete "  (click)="deleteAll()" >DELETE</button>
@@ -48,7 +48,7 @@
         <tr class="user"  *ngFor="let user of users  "  >
           
           <td>
-            <input type="checkbox" (click)="checkedID(user._id);" name="delete[]" id="{{user._id}}">
+            <input type="checkbox" (change)="getIdChecked($event,user._id);" name="delete" id="{{user._id}}">
           </td>
 
           <td (click)="getUpdateUser(user)" data-toggle="modal" data-target="#myModal" id="{{user._id}}"  >

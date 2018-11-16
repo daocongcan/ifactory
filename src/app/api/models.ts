@@ -59,3 +59,6 @@ export { Site_properties } from './models/site-_properties';
 export { Site_product } from './models/site-_product';
 export { Storage_properties } from './models/storage-_properties';
 export { Storage_product } from './models/storage-_product';
+
+export { Group } from './models/group';
+export { Gw } from './models/gw';

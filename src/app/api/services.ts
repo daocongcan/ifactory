@@ -16,3 +16,5 @@ export { StatusService } from './services/status.service';
 export { StoragesService } from './services/storages.service';
 export { UnitsService } from './services/units.service';
 export { UsersService } from './services/users.service';
+export { GroupsService } from './services/groups.service';
+export { GwService } from './services/gw.service';

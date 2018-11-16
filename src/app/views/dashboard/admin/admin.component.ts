@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
       data => {
         this.companies = data;
         this.companies.forEach(company => {
-          console.log(company);
+          // console.log(company);
 
         });
       }
@@ -78,22 +78,27 @@ export class AdminComponent implements OnInit {
   }
 
   saveCompany() {
-    if ((document.getElementById('name_company') as HTMLInputElement).value === '') {
-      this.commonService.notifyError(this.locale.SORRY, this.locale.NAME_IS_REQUIRED, 1500);
+    
+    if (this.company._id < 1 || this.company._id == undefined ) {
+      this.commonService.notifyError(this.locale.SORRY, "Enter Id", 1500);
     } 
-    else if ((document.getElementById('address') as HTMLInputElement).value === '') {
-      this.commonService.notifyError(this.locale.SORRY, this.locale.PRICE_IS_REQUIRED, 1500);
-    } else if ((document.getElementById('tax_number') as HTMLInputElement).value === '') {
-      this.commonService.notifyError(this.locale.SORRY, this.locale.DATE_IS_REQUIRED, 1500);
-    } else if ((document.getElementById('phone') as HTMLInputElement).value === '') {
-      this.commonService.notifyError(this.locale.SORRY, this.locale.DATE_IS_REQUIRED, 1500);
+    else if (this.company.name_company == undefined) {
+      this.commonService.notifyError(this.locale.SORRY, "Enter Name", 1500);
+    } 
+    else if ( this.company.address == undefined ) {
+      this.commonService.notifyError(this.locale.SORRY, "Enter Address", 1500);
+    } else if ( this.company.tax_number == undefined ) {
+      this.commonService.notifyError(this.locale.SORRY, "Enter Tax Number", 1500);
+    } else if ( this.company.phone == undefined ) {
+      this.commonService.notifyError(this.locale.SORRY, "Enter Phone", 1500);
     } else {
-
+      
+      // console.log(this.company);
       this.apiCompanyService.createCompany(this.company)
         .subscribe(
           response => {
             this.commonService.notifySuccess(this.locale.CONGRATULATION, this.locale.ADD_NEW_PRODUCT_SUCCESSFULLY, 1500);
-            $('#closeModal').click();
+            
             this.renderView();
           },
           err => {

@@ -39,6 +39,15 @@ import { ListuserComponent } from './user/listuser/listuser.component';
 
 import { UsersService } from '../../api/services/users.service';
 import { RolesService } from '../../api/services/roles.service';
+import { RoleComponent } from './role/role.component';
+import { ListroleComponent } from './role/listrole/listrole.component';
+
+import { GroupsService } from '../../api/services/groups.service';
+import { GwService } from '../../api/services/gw.service';
+
+import { ListgroupComponent } from './group/listgroup/listgroup.component';
+import { GroupComponent } from './group/group.component';
+import { ListgwComponent } from './gw/listgw/listgw.component';
 
 
 
@@ -81,6 +90,8 @@ import { RolesService } from '../../api/services/roles.service';
     RolesService,
     UnitsService,
     FacturationsService,
+    GroupsService,
+    GwService
     
   ],
   declarations: [
@@ -91,6 +102,11 @@ import { RolesService } from '../../api/services/roles.service';
     ListComponent,
     UserComponent,
     ListuserComponent,
+    RoleComponent,
+    ListroleComponent,
+    ListgroupComponent,
+    GroupComponent,
+    ListgwComponent,
     
   ]
 })

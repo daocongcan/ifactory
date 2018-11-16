@@ -3,6 +3,6 @@
 /**
  */
 export class UpdateRole {
-    id?: number;
+    _id?: number;
     role_name?: string;
 }

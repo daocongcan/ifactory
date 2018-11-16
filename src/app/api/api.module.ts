@@ -21,6 +21,9 @@ import { StoragesService } from './services/storages.service';
 import { UnitsService } from './services/units.service';
 import { UsersService } from './services/users.service';
 
+import { GroupsService } from './services/groups.service';
+import { GwService } from './services/gw.service';
+
 /**
  * Module that provides instances for all API services
  */
@@ -51,7 +54,9 @@ import { UsersService } from './services/users.service';
    StatusService,
    StoragesService,
    UnitsService,
-   UsersService
+   UsersService,
+   GroupsService,
+   GwService
   ],
 })
 export class ApiModule { }

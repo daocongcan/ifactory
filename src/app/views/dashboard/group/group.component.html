@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <form #groupForm (ngSubmit)="save();">
+      <div class="col-md-6 md gw-left">  
+        <input class="form-control"  type="number" [(ngModel)]="group._id" name="_id" placeholder="Id">
+        <input class="form-control" type="text" [(ngModel)]="group.group_name" name="group_name"  placeholder="Group Name">
+
+        <ng-select  #company 
+          [allowClear]="true"
+          [items]="items"
+          (data)="refreshValue($event)"
+          (selected)="selected($event)"
+          (removed)="removed($event)"
+          (typed)="typed($event)"
+          placeholder="No Name Company Selected">
+          
+        </ng-select>
+
+      </div>
+      <div class="col-md-6 md gw-right">  
+        <div class="row action">
+          <button style="text-decoration: none" class="btn-search" [routerLink]="['/group']" >SEARCH</button>
+          <!-- <button class="btn-add" >ADD</button> -->
+          <!-- <button class="btn-delete">DELETE</button> -->
+          
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn-submit btn-search" style="width: 190px;" type="submit" value=" ">ADD GROUP</button>
+      </div>
+    </form>
+
+    
+  </div>
+</div> 

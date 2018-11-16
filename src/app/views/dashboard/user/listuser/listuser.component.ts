@@ -22,6 +22,7 @@ import { Locale } from '../../../../locale';
 import { SelectComponent } from 'ng2-select';
 import { NgClass } from '@angular/common';
 import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-listuser',
   templateUrl: './listuser.component.html',
@@ -93,17 +94,11 @@ export class ListuserComponent implements OnInit {
 
         this.users.forEach( e => {
 
-          this.companies.forEach( e2 =>{
-              if(e2._id == e.id_company) {
-                // this.users.push('name_company':e.name_company);      
-              }
-          });
-          
           // console.log(element.name_company);
           this.itemUsers.push(e.name_user);
 
           // this.items = e.name_company;
-          this.ngSelect3.items = this.itemUsers;
+          // this.ngSelect3.items = this.itemUsers;
         });
       }
     );
@@ -122,9 +117,8 @@ export class ListuserComponent implements OnInit {
         data.forEach(e => {
           // console.log(element.name_company);
           this.items.push(e.name_company);
-
-          // this.items = e.name_company;
           this.ngSelect.items = this.items;
+
         });
         
       }
@@ -164,8 +158,31 @@ export class ListuserComponent implements OnInit {
     );
   }
 
+
+  public selectedSearch(value:any):void {
+    let name = value.text;
+    this.users=[];
+    this.apiUserService.listUsers()
+        .subscribe(
+          data => {
+            // console.log(data.body);
+            data.forEach(e => {
+              if(e.name_user == name){
+                this.users.push(e);
+              }              
+            });
+          },
+          err => {
+            this.commonService.notifyError(this.locale.SORRY, "Data error", 1500);
+          }
+        ); 
+      // console.log(this.users);
+  }
+
+
   public selected2(value:any):void {
     this.ro = value.text;
+    
     this.apiRoleService.listRoles().subscribe(
       data => {
         this.roles = data;
@@ -179,16 +196,25 @@ export class ListuserComponent implements OnInit {
     );
   }
 
-  deleteAll(){
+  getIdChecked(e,id){
+    if (e.target.checked) {
+      this.allIdChecked.push(id);
+    }  else {
+      this.allIdChecked.splice(this.allIdChecked.indexOf(id), 1);
+    }
+    console.log(this.allIdChecked.length);
+  }
 
-    if(this.allIdChecked.length>0) {
+  deleteAll(){
+    console.log(this.allIdChecked);
+    if(this.allIdChecked.length > 0 ) {
       if(confirm("Are you sure delete")){
         for (let index = 0; index < this.allIdChecked.length; index++) {
           this.apiUserService.deleteUser(this.allIdChecked[index]).subscribe(
             response => {
               this.commonService.notifySuccess(this.locale.CONGRATULATION, "Delete Success", 1500);
-              $('#closeModal').click();
               this.renderView();
+              this.allIdChecked=[];
             },
             err => {
               this.commonService.notifyError(this.locale.SORRY, this.locale.ADD_NEW_PRODUCT_FAILED, 1500);
@@ -196,8 +222,9 @@ export class ListuserComponent implements OnInit {
           )
         }
       }
+    }else {
+      this.commonService.notifyError(this.locale.SORRY, "Selected user delete", 1500);
     }
-
   };
 
   searchUser(){
@@ -297,7 +324,7 @@ export class ListuserComponent implements OnInit {
       this.commonService.notifyError(this.locale.SORRY, "Enter Role", 1500);
     }
     else {
-      console.log(this.updateUser);
+      // console.log(this.updateUser);
       
       this.apiUserService.updateUser(this.updateUser)
         .subscribe(
@@ -311,6 +338,24 @@ export class ListuserComponent implements OnInit {
           }
         );
     }
+  }
+
+  public filterItems(query) {
+    return this.users.filter(function(el) {
+        return el.name_user.toLowerCase().indexOf(query.toLowerCase())  > -1;
+    })
+    
+  }
+
+  public seachName (){
+    console.log(this.keySearch);
+    this.apiUserService.listUsers().subscribe(
+      data => {
+        this.users = data;
+        this.users = (this.filterItems(this.keySearch));
+        console.log(this.users);
+      }
+    );
   }
 
   private get disabledV():string {

@@ -2,11 +2,12 @@
   <div class="col-md-12">
     <div class="row" style="margin-bottom: 10px;">
       <div class="col-md-6 md">
-        <input type="text" placeholder="Enter name company" id="search" class="form-control">
+        <input type="text" [(ngModel)]="keySearch" (keyup.enter)="seachName()" placeholder="Enter name company" id="search" class="form-control">
       </div>
       <div class="col-md-6 md">
         <button class="btn-search"  (click)="searchCompany()">SEARCH</button>
-        <a  [routerLink]="['/admin']" [routerLinkActive]="['router-link-active']" class="btn-add" >ADD</a>
+        <a  [routerLink]="['/admin/add']" [routerLinkActive]="['router-link-active']" class="btn-add" >ADD</a>
+        <button class="btn-search"  (click)="deleteAll()">DELETE</button>
       </div>
     </div>
 
@@ -14,7 +15,7 @@
         <thead>
           <tr>
             <th>
-              ID
+              
             </th>
             <th>
               Name   
@@ -28,16 +29,18 @@
             <th>
               Phone       
             </th>
-            <th style="width: 12%;"> 
+            <!-- <th style="width: 12%;"> 
                 
-            </th>
+            </th> -->
           </tr>
         </thead>
+
         <tr *ngFor="let company of companies; index as i">
           <td>
-            {{company._id}}
+            <!-- {{company._id}} -->
+            <input type="checkbox" (change)="getIdChecked($event, company._id)" >
           </td>
-          <td>
+          <td (click)="getUpdateCompany(company)" data-toggle="modal" data-target="#myModal" title="edit">
             {{company.name_company}}
           </td>
           <td>
@@ -49,7 +52,7 @@
           <td>
             {{company.phone}}
           </td>
-          <td>
+          <!-- <td>
             <button type="button" class="btn btn-primary" (click)="getUpdateCompany(company)" style="" data-toggle="modal" data-target="#myModal">
               <i class="fa fa-lg fa-edit"></i>
             </button>
@@ -57,7 +60,7 @@
             <button type="button" class="btn btn-danger" (click)="deleteCompany(company._id)" style="">
               <i class="fa fa-lg fa-times"></i>
             </button>
-          </td>
+          </td> -->
         </tr>
       </table>
       <!-- Modal -->
@@ -82,7 +85,7 @@
                 </div>
                 
                 <div class="row">
-                  <button class="btn-submit btn-search" style="width: 190px;" type="submit" value=" ">UPDATE COMPANY</button>
+                  <button class="btn-submit btn-search" style="width: 190px;" type="submit" value=" ">SAVE</button>
                 </div>
     
               </form>

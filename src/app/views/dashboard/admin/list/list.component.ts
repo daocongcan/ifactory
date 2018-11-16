@@ -27,7 +27,8 @@ export class ListComponent implements OnInit {
   public company: Company = new Company();
   public updateCompany: Company = new Company();
   companies: Company[] = [];
-  
+  allIdChecked = [];
+  public keySearch = "" ;
   constructor(
     private router: Router,
     private apiCompanyService: CompaniesService,
@@ -101,12 +102,8 @@ export class ListComponent implements OnInit {
       this.apiCompanyService.searchCompanyResponse(key)
         .subscribe(
           data => {
-            // console.log(data.body);
+            
             this.companies = data.body;
-            // this.companies = data;
-            // this.commonService.notifySuccess(this.locale.CONGRATULATION, this.locale.ADD_NEW_PRODUCT_SUCCESSFULLY, 1500);
-            // $('#closeModal').click();
-            // this.renderView();
           },
           err => {
             this.commonService.notifyError(this.locale.SORRY, "Data error", 1500);
@@ -114,6 +111,37 @@ export class ListComponent implements OnInit {
         );   
     }
   }
+
+  getIdChecked(e,id){
+    // console.log(e.target.checked);
+    if (e.target.checked) {
+      this.allIdChecked.push(id);
+    }  else {
+      this.allIdChecked.splice(this.allIdChecked.indexOf(id), 1);
+    }
+    // console.log(this.allIdChecked);
+  }
+  
+  deleteAll(){
+    if(this.allIdChecked.length>0 ) {
+      if(confirm("Are you sure delete")){
+        for (let index = 0; index < this.allIdChecked.length; index++) {
+          this.apiCompanyService.deleteCompany(this.allIdChecked[index]).subscribe(
+            response => {
+              this.commonService.notifySuccess(this.locale.CONGRATULATION, "Delete Success", 1500);
+              this.renderView();
+              this.allIdChecked=[];
+            },
+            err => {
+              this.commonService.notifyError(this.locale.SORRY, this.locale.ADD_NEW_PRODUCT_FAILED, 1500);
+            }
+          )
+        }
+      }
+    }else {
+      this.commonService.notifyError(this.locale.SORRY, "Selected user delete", 1500);
+    }
+  };
 
   saveCompany(){
     if ((document.getElementById('name_company') as HTMLInputElement).value === '') {
@@ -133,7 +161,7 @@ export class ListComponent implements OnInit {
       this.apiCompanyService.updateCompany(this.updateCompany)
         .subscribe(
           response => {
-            this.commonService.notifySuccess(this.locale.CONGRATULATION, this.locale.ADD_NEW_PRODUCT_SUCCESSFULLY, 1500);
+            this.commonService.notifySuccess(this.locale.CONGRATULATION, "Update Success", 1500);
             $('#closeModal').click();
             this.renderView();
           },
@@ -143,6 +171,22 @@ export class ListComponent implements OnInit {
         );
     }
 
+  }
+
+  public filterItems(query) {
+    return this.companies.filter(function(el) {
+        return el.name_company.toLowerCase().indexOf(query.toLowerCase())  > -1;
+    })
+    
+  }
+
+  public seachName (){
+    this.apiCompanyService.listCompanies().subscribe(
+      data => {
+        this.companies = data;
+        this.companies = (this.filterItems(this.keySearch));
+      }
+    );
   }
 
 }

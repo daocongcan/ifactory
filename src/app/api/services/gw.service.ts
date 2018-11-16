@@ -9,13 +9,13 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
-import { Role } from '../models/role';
-import { CreateRole } from '../models/create-role';
-import { UpdateRole } from '../models/update-role';
+import { Gw } from '../models/gw';
+// import { CreateGw } from '../models/create-Gw';
+// import { UpdateGw } from '../models/update-Gw';
 
 
 @Injectable()
-export class RolesService extends BaseService {
+export class GwService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -24,15 +24,15 @@ export class RolesService extends BaseService {
   }
 
   /**
-   * get list of roles
+   * get list of Gw
    */
-  listRolesResponse(): Observable<HttpResponse<Role[]>> {
+  listGwResponse(): Observable<HttpResponse<Gw[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `role/getall`,
+      this.rootUrl + `Gw/getall`,
       __body,
       {
         headers: __headers,
@@ -44,33 +44,33 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role[] = null;
-        _body = _resp.body as Role[]
-        return _resp.clone({body: _body}) as HttpResponse<Role[]>;
+        let _body: Gw[] = null;
+        _body = _resp.body as Gw[]
+        return _resp.clone({body: _body}) as HttpResponse<Gw[]>;
       })
     );
   }
 
   /**
-   * get list of roles
+   * get list of Gw
    */
-  listRoles(): Observable<Role[]> {
-    return this.listRolesResponse().pipe(
+  listGw(): Observable<Gw[]> {
+    return this.listGwResponse().pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * Create Role
-   * @param body - Created role object
+   * Create Gw
+   * @param body - Created Gw object
    */
-  createRoleResponse(body: CreateRole): Observable<HttpResponse<Role>> {
+  createGwResponse(body: Gw): Observable<HttpResponse<Gw>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       "POST",
-      this.rootUrl + `role/create`,
+      this.rootUrl + `gw/create`,
       __body,
       {
         headers: __headers,
@@ -82,33 +82,33 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role = null;
-        _body = _resp.body as Role
-        return _resp.clone({body: _body}) as HttpResponse<Role>;
+        let _body: Gw = null;
+        _body = _resp.body as Gw
+        return _resp.clone({body: _body}) as HttpResponse<Gw>;
       })
     );
   }
 
   /**
-   * Create Role
-   * @param body - Created role object
+   * Create Gw
+   * @param body - Created Gw object
    */
-  createRole(body: CreateRole): Observable<Role> {
-    return this.createRoleResponse(body).pipe(
+  createGw(body: Gw): Observable<Gw> {
+    return this.createGwResponse(body).pipe(
       map(_r => _r.body)
     );
   }
   /**
    * @param body - undefined
    */
-  updateRoleResponse(body?: UpdateRole): Observable<HttpResponse<Role>> {
+  updateGwResponse(body?: Gw): Observable<HttpResponse<Gw>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       "PUT",
-      this.rootUrl + `role/update/${body._id}`,
+      this.rootUrl + `Gw/update/${body._id}`,
       __body,
       {
         headers: __headers,
@@ -120,9 +120,9 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role = null;
-        _body = _resp.body as Role
-        return _resp.clone({body: _body}) as HttpResponse<Role>;
+        let _body: Gw = null;
+        _body = _resp.body as Gw
+        return _resp.clone({body: _body}) as HttpResponse<Gw>;
       })
     );
   }
@@ -130,23 +130,23 @@ export class RolesService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateRole(body?: UpdateRole): Observable<Role> {
-    return this.updateRoleResponse(body).pipe(
+  updateGw(body?: Gw): Observable<Gw> {
+    return this.updateGwResponse(body).pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * Returns a single role
-   * @param roleId - ID of role to return
+   * Returns a single Gw
+   * @param GwId - ID of Gw to return
    */
-  getRoleByIdResponse(roleId: number): Observable<HttpResponse<Role>> {
+  getGwByIdResponse(GwId: number): Observable<HttpResponse<Gw>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/roles/${roleId}`,
+      this.rootUrl + `/Gw/${GwId}`,
       __body,
       {
         headers: __headers,
@@ -158,34 +158,34 @@ export class RolesService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Role = null;
-        _body = _resp.body as Role
-        return _resp.clone({body: _body}) as HttpResponse<Role>;
+        let _body: Gw = null;
+        _body = _resp.body as Gw
+        return _resp.clone({body: _body}) as HttpResponse<Gw>;
       })
     );
   }
 
   /**
-   * Returns a single role
-   * @param roleId - ID of role to return
+   * Returns a single Gw
+   * @param GwId - ID of Gw to return
    */
-  getRoleById(roleId: number): Observable<Role> {
-    return this.getRoleByIdResponse(roleId).pipe(
+  getGwById(GwId: number): Observable<Gw> {
+    return this.getGwByIdResponse(GwId).pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * Deletes a role
-   * @param roleId - role id to delete
+   * Deletes a Gw
+   * @param GwId - Gw id to delete
    */
-  deleteRoleResponse(roleId: number): Observable<HttpResponse<void>> {
+  deleteGwResponse(GwId: number): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     
     let req = new HttpRequest<any>(
       "DELETE",
-      this.rootUrl + `role/delete/${roleId}`,
+      this.rootUrl + `Gw/delete/${GwId}`,
       __body,
       {
         headers: __headers,
@@ -205,14 +205,14 @@ export class RolesService extends BaseService {
   }
 
   /**
-   * Deletes a role
-   * @param roleId - role id to delete
+   * Deletes a Gw
+   * @param GwId - Gw id to delete
    */
-  deleteRole(roleId: number): Observable<void> {
-    return this.deleteRoleResponse(roleId).pipe(
+  deleteGw(GwId: number): Observable<void> {
+    return this.deleteGwResponse(GwId).pipe(
       map(_r => _r.body)
     );
   }}
 
-export module RolesService {
+export module GwService {
 }
