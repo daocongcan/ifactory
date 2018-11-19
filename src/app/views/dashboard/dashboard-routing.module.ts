@@ -8,6 +8,7 @@ import {GwComponent} from './gw/gw.component';
 import {ListgwComponent} from './gw/listgw/listgw.component';
 
 import {NodeComponent} from './node/node.component';
+import {ListnodeComponent} from './node/listnode/listnode.component';
 
 import {AdminComponent} from './admin/admin.component';
 import {ListComponent} from './admin/list/list.component';
@@ -37,8 +38,16 @@ const routes: Routes = [
     component: ListgwComponent
   },
   {
+    path: 'gw/add',
+    component: GwComponent
+  },
+  {
     path: 'node/add',
     component: NodeComponent
+  },
+  {
+    path: 'node',
+    component: ListnodeComponent
   },
   {
     path: 'admin/add',

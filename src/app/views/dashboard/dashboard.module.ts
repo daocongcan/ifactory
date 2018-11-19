@@ -50,6 +50,7 @@ import { GwService } from '../../api/services/gw.service';
 import { ListgroupComponent } from './group/listgroup/listgroup.component';
 import { GroupComponent } from './group/group.component';
 import { ListgwComponent } from './gw/listgw/listgw.component';
+import { ListnodeComponent } from './node/listnode/listnode.component';
 
 
 
@@ -110,6 +111,7 @@ import { ListgwComponent } from './gw/listgw/listgw.component';
     ListgroupComponent,
     GroupComponent,
     ListgwComponent,
+    ListnodeComponent,
     
   ]
 })
