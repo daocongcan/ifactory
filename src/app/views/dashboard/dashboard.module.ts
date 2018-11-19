@@ -39,6 +39,8 @@ import { ListuserComponent } from './user/listuser/listuser.component';
 
 import { UsersService } from '../../api/services/users.service';
 import { RolesService } from '../../api/services/roles.service';
+import { NodeService } from '../../api/services/node.service';
+
 import { RoleComponent } from './role/role.component';
 import { ListroleComponent } from './role/listrole/listrole.component';
 
@@ -91,7 +93,8 @@ import { ListgwComponent } from './gw/listgw/listgw.component';
     UnitsService,
     FacturationsService,
     GroupsService,
-    GwService
+    GwService,
+    NodeService
     
   ],
   declarations: [

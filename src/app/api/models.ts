@@ -62,3 +62,4 @@ export { Storage_product } from './models/storage-_product';
 
 export { Group } from './models/group';
 export { Gw } from './models/gw';
+export { Node } from './models/node';

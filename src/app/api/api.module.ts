@@ -23,6 +23,7 @@ import { UsersService } from './services/users.service';
 
 import { GroupsService } from './services/groups.service';
 import { GwService } from './services/gw.service';
+import { NodeService } from './services/node.service';
 
 /**
  * Module that provides instances for all API services
@@ -56,7 +57,8 @@ import { GwService } from './services/gw.service';
    UnitsService,
    UsersService,
    GroupsService,
-   GwService
+   GwService,
+   NodeService
   ],
 })
 export class ApiModule { }

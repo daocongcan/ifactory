@@ -37,7 +37,7 @@ const routes: Routes = [
     component: ListgwComponent
   },
   {
-    path: 'node',
+    path: 'node/add',
     component: NodeComponent
   },
   {
